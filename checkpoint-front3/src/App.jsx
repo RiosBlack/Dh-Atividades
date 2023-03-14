@@ -61,6 +61,7 @@ export default function App() {
 
     //FUNÇÃO EDITAR TAREFA ESTÁ PRONTA MAS NÃO VINCULADA A BOTÕES
     function preencherTarefa(tarefa) {
+        setId(tarefa.id)
         setTitulo(tarefa.titulo);
         setCategoria(tarefa.categoria);
         setData(tarefa.data);
@@ -141,7 +142,7 @@ export default function App() {
                         <Tarefas
                             editar={() => preencherTarefa(tarefa)}
                             excluir={() => apagarTarefa(tarefa.id)}
-                            key={Tarefas.id}
+                            key={tarefa.id}
                             titulo={tarefa.titulo}
                             categoria={tarefa.categoria}
                             data={tarefa.data}
