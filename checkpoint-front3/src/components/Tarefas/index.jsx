@@ -1,7 +1,10 @@
 export default function Tarefas(props) {
     const { key, titulo, categoria, data, descricao, editar, excluir } = props;
     return (
-        <li key={key} className="flex justify-between">
+        <li
+            key={key}
+            className="flex justify-between text-white bg-gradient-to-r from-red-800 via-yellow-600 to-yellow-500 rounded-md mb-2"
+        >
             <div className="p-2 w-3/4">
                 <h1 className="text-xl font-semibold">{titulo}</h1>
                 <p>{categoria}</p>
