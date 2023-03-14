@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Tarefas from './components/Tarefas';
 
 export default function App() {
     const [id, setId] = useState('');
@@ -18,17 +19,21 @@ export default function App() {
         }
         
         if(id){
-            const copiaListaToDo = [...listaToDo];
-    
-            const index = copiaListaToDo.findIndex((tarefa) => tarefa.id === id);
-    
-            copiaListaToDo[index].titulo = titulo;
-            copiaListaToDo[index].categoria = categoria;
-            copiaListaToDo[index].data = data;
-            copiaListaToDo[index].descricao = descricao;
-
-            console.log(copiaListaToDo);
-    
+            // const copiaListaToDo = [...listaToDo];
+            // const index = copiaListaToDo.findIndex((tarefa) => tarefa.id === id);
+            // copiaListaToDo[index].titulo = titulo;
+            // copiaListaToDo[index].categoria = categoria;
+            // copiaListaToDo[index].data = data;
+            // copiaListaToDo[index].descricao = descricao;
+            // console.log(copiaListaToDo);
+            const copiaListaToDo = JSON.parse(JSON.stringify(listaToDo))
+            const index = copiaListaToDo.findIndex((tarefa)=>tarefa.id === id)
+            copiaListaToDo[index].titulo = titulo
+            copiaListaToDo[index].categoria = categoria
+            copiaListaToDo[index].data = data
+            copiaListaToDo[index].descricao = descricao
+            setListaToDo(copiaListaToDo)
+            console.log(listaToDo);
         }else{
             setListaToDo([...listaToDo, {
                 id: Date.now(), 
@@ -37,8 +42,7 @@ export default function App() {
                 data, 
                 descricao
             }]);
-            
-            console.log(listaToDo);
+            console.log(listaToDo);     
         }
     
     setTitulo("");
@@ -67,7 +71,7 @@ export default function App() {
     return (
         <div className="bg-black w-full h-screen flex justify-center itens-center p-2">
             <div className="w-1/4 my-20 bg-white mr-5 rounded-lg grid justify-center content-center">
-                <h1 className="mb-5">Cadastrar tarefas</h1>
+                <h1 className="mb-5">To Do List</h1>
                 <div className="w-1/4 my-20 bg-white mr-5 rounded-lg">
                     <form className="grid" onSubmit={addTarefa}>
                         <input
@@ -107,11 +111,25 @@ export default function App() {
                         <input
                             className="bg-slate-500 rounded hover:bg-slate-400 hover:text-slate-500"
                             type="submit"
-                            value="Salvar"
+                            value={id ? "Salvar" : "Cadastrar Tarefa"}
                         />
                     </form>
 
-                    <ul>Lista de Tarefas</ul>
+                    {/* <ul>Lista de Tarefas</ul> */}
+                    <h2>Lista de Tarefas</h2>
+                    <ul>
+                        {
+                            listaToDo.map((tarefa)=>(
+                                <Tarefas 
+                                    key={Tarefas.id}
+                                    titulo={tarefa.titulo}
+                                    categoria={tarefa.categoria}
+                                    data={tarefa.data}
+                                    descricao={tarefa.descricao}
+                                />
+                            ))
+                        }
+                    </ul>
                     
                 </div>
                 <div className="w-1/2 bg-white rounded-lg">itens</div>
