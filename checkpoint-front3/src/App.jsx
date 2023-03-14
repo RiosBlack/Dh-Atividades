@@ -40,7 +40,6 @@ export default function App() {
         setData('');
         setDescricao('');
         setId('');
-        console.log(id);
     }
 
     function editarTarefas(e) {
@@ -54,8 +53,13 @@ export default function App() {
             copiaListaToDo[index].data = data;
             copiaListaToDo[index].descricao = descricao;
             setListaToDo(copiaListaToDo);
-            console.log(listaToDo);
         }
+
+        setTitulo('');
+        setCategoria('');
+        setData('');
+        setDescricao('');
+        setId('');
     }
 
     //FUNÇÃO EDITAR TAREFA ESTÁ PRONTA MAS NÃO VINCULADA A BOTÕES
@@ -69,10 +73,17 @@ export default function App() {
 
     //FUNÇÃO APAGAR TAREFA ESTÁ PRONTA MAS NÃO VINCULADA A BOTÕES
     function apagarTarefa(id) {
+        if (titulo || categoria || data || descricao) {
+            alert('Por favor salvar informações para após excluir.');
+            return;
+        }
+
         if (confirm('Deseja apagar tarefa?')) {
             const result = listaToDo.filter(tarefa => tarefa.id !== id);
             setListaToDo(result);
         }
+
+        console.log(id);
     }
 
     return (
