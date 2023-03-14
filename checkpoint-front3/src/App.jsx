@@ -8,23 +8,33 @@ function App() {
     const [descricao, setDescricao] = useState('');
 
     const [listaToDo, setListaToDo] = useState([]);
+    
+    function addTarefa(event) {
+      event.preventDefault();
+      setListaToDo([...listaToDo, {id: Date.now(), titulo, categoria, data, descricao}]);
+      setTitulo("");
+      setCategoria("");
+      setData("");
+      setDescricao("");
+      console.log(listaToDo)
+    }
 
     return (
         <div className="bg-black w-full h-screen flex justify-center itens-center p-2">
             <div className="w-1/4 my-20 bg-white mr-5 rounded-lg grid justify-center content-center">
                 <h1 className="mb-5">Cadastrar tarefas</h1>
                 <div className="w-1/4 my-20 bg-white mr-5 rounded-lg">
-                    <form className="grid">
+                    <form className="grid" onSubmit={addTarefa}>
                         <input
                             type="text"
                             placeholder="Título"
-                            className="border border-slate-400 rounded-md"
+                            className="border border-slate-400 rounded-md" onChange={(event) => setTitulo (event.target.value)}
                         />
                         <div className="text-xs text-red-600 mb-3">
                             Campo Obrigatório
                         </div>
 
-                        <select className="mb-3 border border-slate-400 rounded-md">
+                        <select className="mb-3 border border-slate-400 rounded-md" onChange={(event) => setCategoria (event.target.value)}>
                             <option value="" disabled>
                                 Selecione uma categoria
                             </option>
@@ -37,12 +47,12 @@ function App() {
                         <input
                             className="mb-3 border border-slate-400 rounded-md"
                             type="date"
-                            placeholder="Data"
+                            placeholder="Data" onChange={(event) => setData (event.target.value)}
                         />
                         <input
                             className="mb-3 h-20 text-justify border border-slate-400 rounded-md"
                             type="text"
-                            placeholder="Descrição"
+                            placeholder="Descrição" onChange={(event) => setDescricao (event.target.value)}
                         />
 
                         <input
