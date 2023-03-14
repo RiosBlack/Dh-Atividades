@@ -1,6 +1,14 @@
 import { useState } from 'react';
 
 function App() {
+    const [id, setId] = useState('')
+    const [titulo, setTitulo] = useState('')
+    const [categoria, setCategoria] = useState('')
+    const [data, setData] = useState('')
+    const [descricao, setDescricao] = useState('')
+
+    const [listaToDo, setListaToDo] = useState([])
+
     return (
         <div className="bg-black w-full h-screen flex justify-center itens-center p-2">
             <div className='w-1/4 my-20 bg-white mr-5 rounded-lg'>
@@ -18,6 +26,7 @@ function App() {
                 <option value="Prioridade">prioridade</option>
                 <option value="Outros">outros</option>
               </select>
+        
                 <input type="date"  placeholder='Data'/>
                 <input type="text" placeholder='Descrição'/>
 
@@ -27,7 +36,6 @@ function App() {
               <ul>
                 
               </ul>
-
             </div>
             <div className='w-1/2 bg-white rounded-lg'>itens</div>
         </div>
