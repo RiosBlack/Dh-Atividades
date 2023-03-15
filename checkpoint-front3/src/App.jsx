@@ -109,7 +109,7 @@ export default function App() {
                     <input
                         value={titulo}
                         placeholder="Título"
-                        className="border border-slate-400 rounded-md placeholder:text-sm pl-2 border-orange-300 "
+                        className="border rounded-md placeholder:text-sm pl-2 border-orange-300 "
                         onChange={event => setTitulo(event.target.value)}
                     />
                     {titulo === '' ? (
@@ -121,7 +121,7 @@ export default function App() {
                     )}
 
                     <select
-                        className="border border-slate-400 pl-2 rounded-md placeholder:text-sm  border-orange-300"
+                        className="border pl-2 rounded-md placeholder:text-sm  border-orange-300"
                         value={categoria}
                         onChange={event => setCategoria(event.target.value)}
                     >
@@ -142,7 +142,7 @@ export default function App() {
                     )}
 
                     <input
-                        className="border border-slate-400 pl-1 rounded-md placeholder:text-sm  border-orange-300"
+                        className="border pl-1 rounded-md placeholder:text-sm  border-orange-300"
                         type="date"
                         value={data}
                         placeholder="Data"
@@ -157,7 +157,7 @@ export default function App() {
                     )}
 
                     <textarea
-                        className="h-20 text-justify border border-slate-400 pl-2 rounded-md placeholder:text-sm border-orange-300 align-top resize-none"
+                        className="h-20 text-justify border pl-2 rounded-md placeholder:text-sm border-orange-300 align-top resize-none"
                         value={descricao}
                         type="area"
                         placeholder="Descrição"
