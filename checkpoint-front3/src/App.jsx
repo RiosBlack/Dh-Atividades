@@ -18,7 +18,7 @@ export default function App() {
             data === '' ||
             descricao == ''
         ) {
-            alert('PREENCHA TODAS AS INFORMAÇÕES');
+            alert('Preencha todas as informações');
             return;
         }
 
@@ -44,6 +44,16 @@ export default function App() {
 
     function editarTarefas(e) {
         e.preventDefault();
+
+        if (
+            titulo === '' ||
+            categoria === '' ||
+            data === '' ||
+            descricao == ''
+        ) {
+            alert('Preencha todas as informações');
+            return;
+        }
 
         if (id) {
             const copiaListaToDo = JSON.parse(JSON.stringify(listaToDo));
@@ -73,7 +83,7 @@ export default function App() {
 
     //FUNÇÃO APAGAR TAREFA ESTÁ PRONTA MAS NÃO VINCULADA A BOTÕES
     function apagarTarefa(id) {
-        if (titulo || categoria || data || descricao) {
+        if (titulo || categoria || data || descricao ) {
             alert('Por favor salvar informações para após excluir.');
             return;
         }
@@ -99,19 +109,19 @@ export default function App() {
                     <input
                         value={titulo}
                         placeholder="Título"
-                        className="border border-slate-400 rounded-md placeholder:text-sm  border-orange-300 "
+                        className="border border-slate-400 rounded-md placeholder:text-sm pl-2 border-orange-300 "
                         onChange={event => setTitulo(event.target.value)}
                     />
                     {titulo === '' ? (
-                        <div className="text-xs text-red-600 mb-3 animate-pulse">
+                        <small className="text-xs text-red-600 mb-3 animate-pulse">
                             Campo Obrigatório
-                        </div>
-                    ) : (
-                        <div className="mb-3"></div>
+                        </small>
+                    ) :  (
+                        <small className="mb-3"></small>
                     )}
 
                     <select
-                        className="mb-3 border border-slate-400 rounded-md placeholder:text-sm  border-orange-300"
+                        className="border border-slate-400 pl-2 rounded-md placeholder:text-sm  border-orange-300"
                         value={categoria}
                         onChange={event => setCategoria(event.target.value)}
                     >
@@ -123,21 +133,43 @@ export default function App() {
                         <option value="prioridade">Prioridade</option>
                         <option value="outros">Outros</option>
                     </select>
+                    {categoria === '' ? (
+                        <small className="text-xs text-red-600 mb-3 animate-pulse">
+                            Campo Obrigatório
+                        </small>
+                    ) :  (
+                        <small className="mb-3"></small>
+                    )}
 
                     <input
-                        className="mb-3 border border-slate-400 rounded-md placeholder:text-sm  border-orange-300"
+                        className="border border-slate-400 pl-1 rounded-md placeholder:text-sm  border-orange-300"
                         type="date"
                         value={data}
                         placeholder="Data"
                         onChange={event => setData(event.target.value)}
                     />
+                     {data === '' ? (
+                        <small className="text-xs text-red-600 mb-3 animate-pulse">
+                            Campo Obrigatório
+                        </small>
+                    ) :  (
+                        <small className="mb-3"></small>
+                    )}
+
                     <textarea
-                        className="mb-3 h-20 text-justify border border-slate-400 rounded-md placeholder:text-sm border-orange-300 align-top resize-none"
+                        className="h-20 text-justify border border-slate-400 pl-2 rounded-md placeholder:text-sm border-orange-300 align-top resize-none"
                         value={descricao}
                         type="area"
                         placeholder="Descrição"
                         onChange={event => setDescricao(event.target.value)}
                     />
+                     {descricao === '' ? (
+                        <small className="text-xs text-red-600 mb-3 animate-pulse">
+                            Campo Obrigatório
+                        </small>
+                    ) :  (
+                        <small className="mb-3"></small>
+                    )}
 
                     <input
                         className="bg-gradient-to-r from-red-800 via-yellow-600 to-yellow-500 rounded-md hover:brightness-50 cursor-pointer font-semibold text-white hover:animate-pulse"
